@@ -67,9 +67,33 @@ func NewReportManager(r RevenueReader) *ReportManager {
 
 ## 3. Primitivizing the Hard-to-Test
 
-One of the most powerful translations we discovered wasn't in the book's mechanics, but in Go's ergonomics: **Primitivize Parameter.**
+In Java, a common legacy technique for making code testable is to use static setters and getters to swap out dependencies like clocks, databases, or services. This pattern is often used to replace hard-coded dependencies in production code with fakes or mocks in tests. The Go-specific translation of this technique is to extract any business rules, checks, or calculations—into standalone pure functions that operate only on Go primitives (`int`, `string`, `bool`, etc). 
 
-Legacy structs often suck the "entire world" into a test. If a struct has 50 fields and a database handle, testing one small method becomes a nightmare. We found that extracting the math into a **Pure Function** that speaks only in Go primitives (`int`, `string`, `bool`) is often better than any complex mocking.
+Instead of embedding logic deep inside methods that depend on struct fields or external resources, move that logic into a function that takes only the minimal required values as parameters. This makes the logic trivial to test, without needing to construct the full struct or mock out its dependencies.
+
+For example, instead of:
+
+```go
+func (rm *ReportManager) GenerateReport() error {
+    // ...
+    if time.Now().Day() == 1 {
+        // do something
+    }
+    // ...
+}
+```
+
+Extract the logic:
+
+```go
+func IsReportDay(t time.Time) bool {
+    return t.Day() == 1
+}
+```
+
+Now, you can test `IsReportDay` directly with any date, without needing to set up a `ReportManager` or mock time.
+
+This approach applies to any logic that can be expressed in terms of simple types, not just math—making your codebase more modular, testable, and idiomatic
 
 
 ## The Verdict: Learning by Translation
