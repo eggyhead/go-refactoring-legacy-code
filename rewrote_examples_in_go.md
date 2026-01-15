@@ -93,7 +93,7 @@ func IsReportDay(t time.Time) bool {
 
 Now, you can test `IsReportDay` directly with any date, without needing to set up a `ReportManager` or mock time.
 
-This approach applies to any logic that can be expressed in terms of simple types, not just math—making your codebase more modular, testable, and idiomatic
+This approach applies to any logic that can be expressed in terms of simple types, making your codebase more modular, testable, and idiomatic
 
 
 ## The Verdict: Learning by Translation
