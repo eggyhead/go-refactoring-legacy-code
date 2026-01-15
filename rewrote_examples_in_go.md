@@ -76,7 +76,7 @@ Legacy structs often suck the "entire world" into a test. If a struct has 50 fie
 
 Translating these 20-year-old patterns into Go did more than just improve our test coverage; it deepened our understanding of Go’s unique ergonomics.
 
-We’ve compiled these "translations" into a **[Learning Repository]**. Inside, you’ll find "Before and After" examples for:
+We’ve compiled these "translations" into a Learning Repository. Inside, you’ll find "Before and After" examples for:
 
 * **Hard-coded SQL:** Moving from `sql.DB` to interfaces.
 * **Time Clings:** Replacing `time.Now()` with function fields.
