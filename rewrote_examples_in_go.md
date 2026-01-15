@@ -6,7 +6,6 @@ The book's framework relies on finding Seams: points in a codebase where you can
 
 To understand the problematic legacy patterns in Go services, we rewrote the examples and we are sharing some of the details. 
 
-
 ## 1. The Death of "Subclass and Override"
 
 In Java or C++, if a method hits a real database, you subclass the object and override that method in your test. In Go, this is a dead end.
@@ -98,12 +97,12 @@ This approach applies to any logic that can be expressed in terms of simple type
 
 ## The Verdict: Learning by Translation
 
-Translating these 20-year-old patterns into Go did more than just improve our test coverage; it deepened our understanding of Go’s unique ergonomics.
+Translating these 20-year-old patterns into Go deepened our understanding of Go’s unique ergonomics and helped equip us to apply these techniques in a production codebase.
 
 We’ve compiled these "translations" into a Learning Repository. Inside, you’ll find "Before and After" examples for:
 
-* **Hard-coded SQL:** Moving from `sql.DB` to interfaces.
-* **Time Clings:** Replacing `time.Now()` with function fields.
-* **Global Singletons:** Replacing package-level variables with getters.
+* Hard-coded SQL: Moving from `sql.DB` to interfaces.
+* Time Clings: Replacing `time.Now()` with function fields.
+* Global Singletons: Replacing package-level variables with getters.
 
-By spotting these patterns in your production code, you can use this repository as a field guide for safely breaking dependencies and finally writing that first test.
+You can use this repository as a field guide for safely breaking dependencies and writing robust, meaningful tests for your evolving Go projects.
